@@ -20,6 +20,7 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText password;
     private Handler handler = new Handler(Looper.getMainLooper());
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,17 +41,17 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
         String Verified_User = "Admin", Verified_Password = "123";
 
         if (Username.equals(Verified_User) && Password.equals(Verified_Password)) {
-            t.setText("Iniciando sesion");
-            handler.postDelayed(() -> t.setText("Iniciando sesion."), 500);
-            handler.postDelayed(() -> t.setText("Iniciando sesion.."), 500);
-            handler.postDelayed(() -> t.setText("Iniciando sesion..."), 1000);
+            t.setText("Iniciando sesión");
+            handler.postDelayed(() -> t.setText("Iniciando sesión."), 500);
+            handler.postDelayed(() -> t.setText("Iniciando sesión.."), 500);
+            handler.postDelayed(() -> t.setText("Iniciando sesión..."), 1000);
             handler.postDelayed(() -> {
                 Intent intent = new Intent(mainActivity.this, initialscreen.class);
                 startActivity(intent);
                 t.setText("");
             }, 1500); //cambios
         } else {
-            t.setText("Usuario o contraseña incorrectos");
+            t.setText("Usuario o contraseña incorrectos.");
             handler.postDelayed(() -> t.setText(""), 3000);
         }
     }
