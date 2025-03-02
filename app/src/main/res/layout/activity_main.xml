@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Ingresa tu codigo de estudiante y contraseña"
+            android:text="Ingresa tu código de estudiante y contraseña."
             android:textSize="20sp" />
 
         <Space
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#8BC34A"
-            android:text="Iniciar sesion" />
+            android:text="Iniciar sesión" />
 
         <Space
             android:layout_width="match_parent"
