@@ -5,84 +5,155 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context=".mainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <!-- Barra superior con título -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_gradient"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="CUCEI Verde"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:elevation="4dp"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView"
+    <!-- Tarjeta de login -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#4CAF50"
-            android:gravity="center"
-            android:shadowColor="#4CAF50"
-            android:text="CUCEI Verde"
-            android:textColorLink="#4CAF50"
-            android:textSize="34sp" />
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="52dp" />
+            <!-- Imagen o logo -->
+            <ImageView
+                android:id="@+id/imageViewLogo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="Logo CUCEI"
+                app:srcCompat="@drawable/images__1_" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="243dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Ingresa tu código de estudiante y contraseña."
-            android:textSize="20sp" />
+            <!-- Texto instructivo -->
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Ingresa tu código de estudiante y contraseña"
+                android:textColor="#424242"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="29dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
 
-        <EditText
-            android:id="@+id/editTextText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Usuario"
-            android:inputType="text" />
+            <!-- Campo de usuario con icono -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usuario"
+                app:startIconDrawable="@drawable/ic_person"
+                app:startIconTint="#4CAF50"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="11dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/editTextText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Contraseña"
-            android:inputType="text" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="29dp" />
+            <!-- Campo de contraseña con icono y visibilidad -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:startIconTint="#4CAF50"
+                app:endIconMode="password_toggle"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#8BC34A"
-            android:text="Iniciar sesión" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="29dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="34sp" />
+            <!-- Enlace para recuperar contraseña -->
+            <TextView
+                android:id="@+id/textViewForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="¿Olvidaste tu contraseña?"
+                android:textColor="#4CAF50"
+                android:textSize="14sp" />
 
-    </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <!-- Botón de iniciar sesión -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#4CAF50"
+                android:padding="12dp"
+                android:text="Iniciar sesión"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:cornerRadius="8dp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Pie de página -->
+    <TextView
+        android:id="@+id/textViewFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="© 2025 CUCEI Verde"
+        android:textColor="#757575"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
