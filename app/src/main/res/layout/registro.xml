@@ -18,8 +18,9 @@
             android:layout_height="wrap_content"
             android:background="#4CAF50"
             android:gravity="center"
-            android:shadowColor="#4CAF50"
+            android:shadowColor="#FFFFFF"
             android:text="CUCEI Verde"
+            android:textColor="#FFFDFD"
             android:textColorLink="#4CAF50"
             android:textSize="34sp" />
 
