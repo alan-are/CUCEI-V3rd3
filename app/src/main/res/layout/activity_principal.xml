@@ -37,6 +37,8 @@
                 app:srcCompat="@drawable/images__1_" />
 
             <!-- Título de la aplicación con mejor tipografía -->
+
+            <!-- Subtítulo o eslogan -->
             <TextView
                 android:id="@+id/app_title"
                 android:layout_width="match_parent"
@@ -49,7 +51,6 @@
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
-            <!-- Subtítulo o eslogan -->
             <TextView
                 android:id="@+id/app_subtitle"
                 android:layout_width="match_parent"
