@@ -3,5 +3,6 @@
     <item name="editTextText" type="id" />
     <item name="editTextText2" type="id" />
     <item name="textView6" type="id" />
+    <item name="tvUbicacionReporte" type="id" />
     <item name="button" type="id" />
 </resources>
