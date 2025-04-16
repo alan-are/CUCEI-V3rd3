@@ -20,7 +20,7 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText password;
     private Handler handler = new Handler(Looper.getMainLooper());
 
-    @SuppressLint("MissingInflatedId")
+        @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +35,7 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @SuppressLint("SetTextI18n")
-    @Override
-    public void onClick(View view) {
+    @Override    public void onClick(View view) {
         String Username = username.getText().toString(), Password = password.getText().toString();
         String Verified_User = "Admin", Verified_Password = "123";
 
@@ -46,7 +45,7 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
             handler.postDelayed(() -> t.setText("Iniciando sesión.."), 500);
             handler.postDelayed(() -> t.setText("Iniciando sesión..."), 1000);
             handler.postDelayed(() -> {
-                Intent intent = new Intent(mainActivity.this, initialscreen.class);
+                Intent intent = new Intent(mainActivity.this, webview.class);
                 startActivity(intent);
                 t.setText("");
             }, 1500); //cambios

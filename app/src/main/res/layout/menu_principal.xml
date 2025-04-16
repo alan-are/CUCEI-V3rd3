@@ -40,7 +40,7 @@
         <TextView
             android:id="@+id/textView9"
             android:layout_width="match_parent"
-            android:layout_height="166dp"
+            android:layout_height="98dp"
             android:gravity="center"
             android:text="Sample text"
             android:textSize="20sp" />
@@ -118,17 +118,27 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="69dp" />
+                android:layout_height="33dp" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="36dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
                 android:layout_gravity="center"
                 android:background="#4CAF50"
                 android:scaleX="5"
                 android:scaleY="5"
                 app:srcCompat="@android:drawable/stat_notify_chat" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="43dp" />
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
         </LinearLayout>
 
     </LinearLayout>

@@ -56,18 +56,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="716dp">
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:scaleX=".8"
-                android:scaleY=".8"
-                android:src="@tools:sample/avatars"
-                tools:srcCompat="@drawable/_28_6284722_hoja_png" />
-        </androidx.cardview.widget.CardView>
+            android:layout_height="716dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +81,7 @@
                 android:scaleType="fitCenter"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
-                android:tint="#00C853"
+                tools:src="@tools:sample/avatars"
                 android:tintMode="multiply"
                 app:srcCompat="@android:drawable/ic_menu_send" />
 
