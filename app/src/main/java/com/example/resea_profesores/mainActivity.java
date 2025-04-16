@@ -45,7 +45,7 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
             handler.postDelayed(() -> t.setText("Iniciando sesión.."), 500);
             handler.postDelayed(() -> t.setText("Iniciando sesión..."), 1000);
             handler.postDelayed(() -> {
-                Intent intent = new Intent(mainActivity.this, webview.class);
+                Intent intent = new Intent(mainActivity.this, menu_principal.class);
                 startActivity(intent);
                 t.setText("");
             }, 1500); //cambios
