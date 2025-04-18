@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ResenaProfesores</string>
+    <string name="app_name" translatable="false">ResenaProfesores</string>
+    <string name="default_web_client_id" translatable="false">969234145207-us82ubsp70g0ma972hjmjmvcc12i5bnc.apps.googleusercontent.com</string>
 </resources>
