@@ -144,6 +144,7 @@
                 android:layout_gravity="bottom|end"
                 android:backgroundTint="#D50000"
                 android:text="Cerrar sesion"
+                android:textColor="#FFFFFF"
                 android:textColorLink="#FFFFFF"
                 android:textStyle="bold" />
 

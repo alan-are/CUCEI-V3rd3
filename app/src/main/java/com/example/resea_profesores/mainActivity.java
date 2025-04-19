@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,16 +33,20 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class mainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.Objects;
 
+public class mainActivity extends AppCompatActivity  {
+
+    private Button btnLogin;
+    private TextView textViewSignUp;
     private Button google_sign_in;
-    private Button b;
-    private TextView t;
-    private EditText username;
-    private EditText password;
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private EditText editEmailLogin;
+    private EditText editPasswordLogin;
 
-    private FirebaseAuth firebaseAuth;
+    private ProgressBar progressBar;
+
+    private FirebaseAuth mAuth;
+
     private FirebaseDatabase database;
     private GoogleSignInClient googleSignInClient;
     private int RC_SIGN_IN = 20;
@@ -59,16 +66,58 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Configuración de Firebase
-        firebaseAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-        // Configuración del login tradicional
-        username = findViewById(R.id.editTextText);
-        password = findViewById(R.id.editTextText2);
-        t = findViewById(R.id.textView6);
-        b = findViewById(R.id.button);
-        b.setOnClickListener(this);
+        progressBar = findViewById(R.id.progressBarLogin);
+
+        btnLogin = findViewById(R.id.btnLogin);
+        editEmailLogin = findViewById(R.id.editEmailLogin);
+        editPasswordLogin = findViewById(R.id.editPasswordLogin);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String email, password;
+                email = editEmailLogin.getText().toString();
+                password = editPasswordLogin.getText().toString();
+                if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+                    Toast.makeText(mainActivity.this,"Por favor, ingrese todos los campos",Toast.LENGTH_SHORT).show();
+                } else{
+                    if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                        Toast.makeText(mainActivity.this, "Correo electrónico inválido", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else{
+                        progressBar.setVisibility(View.VISIBLE);
+                        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
+                                if(task.isSuccessful()){
+                                    String user_email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
+                                    Toast.makeText(mainActivity.this, "Bienvenido: " + user_email, Toast.LENGTH_SHORT).show();
+                                    updateUI(mAuth.getCurrentUser());
+                                } else {
+                                    Toast.makeText(mainActivity.this,
+                                        "Error: " + Objects.requireNonNull(task.getException()).getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });}
+                }
+            }
+        });
+
+        textViewSignUp = findViewById(R.id.textViewSignUp);
+        textViewSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mainActivity.this, RegisterActivity.class));
+            }
+        });
+
+        // Configuración de Firebase
+        database = FirebaseDatabase.getInstance();
 
         // Configuración de Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -105,38 +154,15 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        firebaseAuth.signInWithCredential(credential)
+        mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        FirebaseUser user = mAuth.getCurrentUser();
                         updateUI(user);
                     } else {
                         updateUI(null);
                     }
                 });
-    }
-
-
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void onClick(View view) {
-        String Username = username.getText().toString(), Password = password.getText().toString();
-        String Verified_User = "Admin", Verified_Password = "123";
-
-        if (Username.equals(Verified_User) && Password.equals(Verified_Password)) {
-            t.setText("Iniciando sesión");
-            handler.postDelayed(() -> t.setText("Iniciando sesión."), 500);
-            handler.postDelayed(() -> t.setText("Iniciando sesión.."), 500);
-            handler.postDelayed(() -> t.setText("Iniciando sesión..."), 1000);
-            handler.postDelayed(() -> {
-                Intent intent = new Intent(mainActivity.this, menu_principal.class);
-                startActivity(intent);
-                t.setText("");
-            }, 1500);
-        } else {
-            t.setText("Usuario o contraseña incorrectos.");
-            handler.postDelayed(() -> t.setText(""), 3000);
-        }
     }
 
     private void updateUI(FirebaseUser user) {
@@ -145,8 +171,10 @@ public class mainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
             finish();
         } else {
-            Toast.makeText(mainActivity.this, "Authentication Failed.",
+            Toast.makeText(mainActivity.this, "Autenticacion fallo",
                     Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }
